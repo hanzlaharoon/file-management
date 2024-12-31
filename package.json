@@ -26,6 +26,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "tus-js-client": "^4.2.3",
+    "use-tus": "^0.8.2",
     "zod": "^3.24.1"
   },
   "devDependencies": {
