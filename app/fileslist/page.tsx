@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -7,17 +7,29 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { TooltipWrapper } from '@/components/tooltip-wrapper';
-import { Download, Eye } from 'lucide-react';
+} from "@/components/ui/table";
+import { TooltipWrapper } from "@/components/tooltip-wrapper";
+import { Download, Eye } from "lucide-react";
+import Link from "next/link";
 
 const files = [
   {
     id: 1,
-    name: 'Employee List',
-    size: '2.5 MB',
-    status: 'Success',
-    price: '$250.00',
+    name: "Countries List",
+    size: "2.5 MB",
+    status: "Success",
+    price: "$250.00",
+    fileUrl:
+      "https://raw.githubusercontent.com/Spencerx/sql/refs/heads/master/code/Table-Values/Countries.csv",
+  },
+  {
+    id: 2,
+    name: "Departments List",
+    size: "623 Bytes",
+    status: "Success",
+    price: "$250.00",
+    fileUrl:
+      "https://raw.githubusercontent.com/Spencerx/sql/refs/heads/master/code/Table-Values/Departments.csv",
   },
 ];
 
@@ -48,13 +60,25 @@ export default function FilesList() {
                 <TableCell className="text-right">
                   <span className="space-x-2">
                     <TooltipWrapper tooltipText="Preview">
-                      <Button variant="outline" size="icon">
-                        <Eye />
+                      <Button asChild variant="outline" size="icon">
+                        <Link
+                          href={file.fileUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Eye />
+                        </Link>
                       </Button>
                     </TooltipWrapper>
                     <TooltipWrapper tooltipText="Download">
-                      <Button variant="outline" size="icon">
-                        <Download />
+                      <Button variant="outline" size="icon" asChild>
+                        <Link
+                          href={file.fileUrl}
+                          target="_blank"
+                          download={file.name}
+                        >
+                          <Download />
+                        </Link>
                       </Button>
                     </TooltipWrapper>
                   </span>
