@@ -8,10 +8,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { InputFile } from "@/types";
 import { formatFileSize } from "@/lib/utils";
 import * as tus from "tus-js-client";
+import { useToast } from "@/hooks/use-toast";
 
 export default function NewFile() {
   const [files, setFiles] = useState<InputFile[]>([]);
   const [uploadedFiles, setUploadedFiles] = useState<tus.Upload[]>([]);
+
+  const { toast } = useToast();
 
   const startUpload = async (index: number) => {
     const fileData = files[index];
@@ -42,7 +45,10 @@ export default function NewFile() {
           status: "completed",
         });
         // TODO: add toast message here
-        // alert(`${fileData.file.name} uploaded successfully!`);
+        toast({
+          title: "File uploaded successfully!",
+          description: `${fileData.file.name} upload completed.`,
+        });
       },
     });
 
@@ -53,6 +59,11 @@ export default function NewFile() {
       await upload.start();
     } catch (error) {
       console.error("Upload failed:", error);
+      toast({
+        variant: "destructive",
+        title: "File upload failed!",
+        description: `Error uploading ${fileData.file.name}.`,
+      });
       updateFileState(index, { status: "error" });
     }
   };

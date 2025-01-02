@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,8 +32,8 @@ export default function RootLayout({
         <header>
           <Navigation />
         </header>
-        {/* <main className="m-auto max-w-lg">{children}</main> */}
         <main>{children}</main>
+        <Toaster />
       </body>
     </html>
   );
