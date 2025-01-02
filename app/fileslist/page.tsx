@@ -26,7 +26,7 @@ export default function FilesList() {
   };
   return (
     <div className="container md:mx-auto px-4">
-      {uploadedFiles.length > 0 && (
+      {uploadedFiles.length > 0 ? (
         <Card>
           <CardHeader>
             <CardTitle className="h1">Uploaded Files</CardTitle>
@@ -66,6 +66,10 @@ export default function FilesList() {
             ))}
           </CardContent>
         </Card>
+      ) : (
+        <div className="flex justify-center items-center h-96">
+          <p className="text-lg text-gray-500">No files uploaded yet.</p>
+        </div>
       )}
     </div>
   );
