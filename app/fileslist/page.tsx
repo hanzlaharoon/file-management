@@ -26,13 +26,10 @@ export default function FilesList() {
   };
   return (
     <div className="container md:mx-auto px-4">
-      <h1 className="h1 font-semibold text-lg">Files List</h1>
-
-      {/* Uploaded Files */}
       {uploadedFiles.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle>Uploaded Files</CardTitle>
+            <CardTitle className="h1">Uploaded Files</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {uploadedFiles.map((file) => (
@@ -50,7 +47,7 @@ export default function FilesList() {
                 <div className="flex space-x-2">
                   <Button size="sm" variant="outline" asChild>
                     <Link
-                      href={`/api/files/${file.name}`}
+                      href={`/api/files/${file.id}`}
                       target="_blank"
                       rel="noreferrer"
                     >

@@ -13,7 +13,7 @@ export const getFileMetadata = async (filename) => {
     const filepath = path.join(uploadsDir, filename);
     const stats = await fs.promises.stat(filepath);
 
-    const metadataPath = `${filepath}.metadata`;
+    const metadataPath = `${filepath}.json`;
     let metadata = {};
 
     try {
@@ -30,7 +30,7 @@ export const getFileMetadata = async (filename) => {
 
     return {
       id: filename,
-      name: metadata.filename || filename,
+      name: metadata.metadata.filename || filename,
       size: stats.size,
       uploadedAt: stats.mtime,
       status: "completed",
@@ -46,7 +46,7 @@ export const getFiles = async () => {
 
   // Filter out .metadata files and get metadata for each file
   const fileMetadataPromises = files
-    .filter((file) => !file.endsWith(".metadata"))
+    .filter((file) => !file.endsWith(".json"))
     .map(getFileMetadata);
 
   const filesMetadata = await Promise.all(fileMetadataPromises);
