@@ -180,33 +180,45 @@ export default function NewFile() {
                       ({formatFileSize(fileData.file.size)})
                     </span>
                   </div>
-                  {fileData.status === "pending" && (
-                    <Button
-                      onClick={() => startUpload(index)}
-                      size="sm"
-                      variant="outline"
-                    >
-                      Start Upload
-                    </Button>
-                  )}
-                  {fileData.status === "paused" && (
-                    <Button
-                      onClick={() => resumeUpload(index)}
-                      size="sm"
-                      variant="outline"
-                    >
-                      Resume
-                    </Button>
-                  )}
-                  {fileData.status === "uploading" && (
-                    <Button
-                      onClick={() => pauseUpload(index)}
-                      size="sm"
-                      variant="outline"
-                    >
-                      Pause
-                    </Button>
-                  )}
+                  <div className="flex items-center space-x-2">
+                    {fileData.status === "pending" && (
+                      <Button
+                        onClick={() => startUpload(index)}
+                        size="sm"
+                        variant="outline"
+                      >
+                        Start Upload
+                      </Button>
+                    )}
+                    {fileData.status === "paused" && (
+                      <Button
+                        onClick={() => resumeUpload(index)}
+                        size="sm"
+                        variant="outline"
+                      >
+                        Resume
+                      </Button>
+                    )}
+                    {fileData.status === "uploading" && (
+                      <Button
+                        onClick={() => pauseUpload(index)}
+                        size="sm"
+                        variant="outline"
+                      >
+                        Pause
+                      </Button>
+                    )}
+                    {fileData.status === "pending" && (
+                      <Button
+                        onClick={() => removeFile(index)}
+                        size="sm"
+                        variant="outline"
+                        className="text-red-500"
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </div>
                 </div>
                 <Progress value={fileData.progress} className="w-full" />
                 <div className="flex items-center mt-2 text-sm">
