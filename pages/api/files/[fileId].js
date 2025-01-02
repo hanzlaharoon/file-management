@@ -11,13 +11,17 @@ export default async function GET(req, res) {
 
     const file = await getFile(fileId);
 
-    res.setHeader("Content-Type", "text/csv");
-    res.setHeader(
-      "Content-Disposition",
-      `attachment; filename="${metadata.name}"`
-    );
-
-    res.send(file);
+    if (req.query.action === "download") {
+      res.setHeader("Content-Type", "text/csv");
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${metadata.name}"`
+      );
+      res.status(200).send(file);
+    } else {
+      res.setHeader("Content-Type", "text/plain");
+      res.status(200).send(file);
+    }
   } catch (error) {
     console.error("Error downloading file:", error);
     return res.json({ error: "File download failed" }, { status: 500 });
