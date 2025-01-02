@@ -9,7 +9,7 @@ export default function Navigation() {
           <Link href="/" className="h3 flex z-40 font-semibold text-2xl mr-4">
             <span>File Management App</span>
           </Link>
-          <Link href="/fileslist" className="flex z-40  text-lg">
+          <Link href="/" className="flex z-40  text-lg">
             <span>Files</span>
           </Link>
           <Link href="/newfile" className="flex z-40  text-lg">
