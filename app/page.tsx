@@ -1,5 +1,5 @@
 "use client";
-import FilesList from "@/components/fileList";
+import FilesList from "@/components/file-list";
 
 export default function Home() {
   return (
