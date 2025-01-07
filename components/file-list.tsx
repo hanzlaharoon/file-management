@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileListItem } from "@/types";
 import FileItem from "./file-item";
+import { useToast } from "@/hooks/use-toast";
 
 export default function FilesList() {
+  const { toast } = useToast();
   const [uploadedFiles, setUploadedFiles] = useState<FileListItem[]>([]);
 
   useEffect(() => {
     fetchFiles();
   }, []);
+
 
   const fetchFiles = async () => {
     try {
@@ -16,6 +19,11 @@ export default function FilesList() {
       const data = await response.json();
       setUploadedFiles(data);
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to fetch files",
+        description: `${error}`,
+      });
       console.error("Error fetching files:", error);
     }
   };
@@ -27,6 +35,11 @@ export default function FilesList() {
       });
       fetchFiles();
     } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Failed to delete file",
+        description: `${error}`,
+      });
       console.error("Error deleting file:", error);
     }
   };
