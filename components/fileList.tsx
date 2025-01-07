@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Download, Eye } from "lucide-react";
+import { CircleX, Download, Eye } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,6 +22,17 @@ export default function FilesList() {
       setUploadedFiles(data);
     } catch (error) {
       console.error("Error fetching files:", error);
+    }
+  };
+
+  const deleteFile = async (fileId: string) => {
+    try {
+      await fetch(`/api/files/${fileId}`, {
+        method: "DELETE",
+      });
+      fetchFiles();
+    } catch (error) {
+      console.error("Error deleting file:", error);
     }
   };
   return (
@@ -60,6 +71,15 @@ export default function FilesList() {
                     onClick={() => downloadFile(file.id, file.name)}
                   >
                     <Download className="w-4 h-4 mr-1" /> Download
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => deleteFile(file.id)}
+                    className="text-red-500"
+                  >
+                    <CircleX color="red" />
+                    Delete
                   </Button>
                 </div>
               </div>
