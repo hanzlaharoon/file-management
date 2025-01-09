@@ -26,7 +26,6 @@ export default function NewFile() {
         filename: fileData.file.name,
         filetype: fileData.file.type,
       },
-      //   uploadUrl: fileData.uploadUrl,
       onError: (error) => {
         console.error("Upload failed:", error);
         updateFileState(index, { status: "error" });
@@ -44,7 +43,6 @@ export default function NewFile() {
           uploadUrl: url || " ",
           status: "completed",
         });
-        // TODO: add toast message here
         toast({
           title: "File uploaded successfully!",
           description: `${fileData.file.name} upload completed.`,
@@ -124,20 +122,8 @@ export default function NewFile() {
   };
 
   return (
-    // <div className="container md:mx-auto px-4">
     <div className="w-full max-w-4xl mx-auto p-4 space-y-4">
       <h1 className="h1">New File</h1>
-
-      {/* <div className="grid w-full max-w-sm items-center gap-1.5">
-        <label htmlFor="files">Select Files</label>
-        <Input
-          name="files"
-          type="file"
-          accept=".csv"
-          multiple
-          onChange={handleFileSelect}
-        ></Input>
-      </div> */}
 
       {/* Upload Zone */}
       <Card className={"border-2 border-dashed border-gray-300"}>
