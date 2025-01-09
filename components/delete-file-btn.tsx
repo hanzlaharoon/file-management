@@ -35,9 +35,9 @@ export default function DeleteFileButton({ file, onDelete }: Props) {
               This action cannot be undone. This will permanently delete your
               the selected file and remove any data associated with it.
               <br />
-              <p>
+              <span>
                 Selected File : <strong>{file.name}</strong>
-              </p>
+              </span>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
